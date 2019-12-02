@@ -1,8 +1,9 @@
 {
-  "name": "element-ui",
+  "name": "@imyon/element-ui",
   "version": "2.13.0",
   "description": "A Component Library for Vue.js.",
   "main": "lib/element-ui.common.js",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "files": [
     "lib",
     "src",
@@ -45,7 +46,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:ElemeFE/element.git"
+    "url": "git@github.com:iMyon/element.git"
   },
   "homepage": "http://element.eleme.io",
   "keywords": [
@@ -55,7 +56,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ElemeFE/element/issues"
+    "url": "https://github.com/iMyon/element/issues"
   },
   "unpkg": "lib/index.js",
   "style": "lib/theme-chalk/index.css",

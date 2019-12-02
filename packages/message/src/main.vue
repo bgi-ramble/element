@@ -106,9 +106,11 @@
       },
       countDown() {
         const d = () => {
-          this.countDownSecond--;
           if (this.countDownSecond > 0) {
-            setTimeout(d, 1000);
+            setTimeout(() => {
+              this.countDownSecond--;
+              d();
+            }, 1000);
           }
         };
         d();
