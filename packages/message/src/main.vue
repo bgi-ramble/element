@@ -6,6 +6,7 @@
         type && !iconClass ? `el-message--${ type }` : '',
         center ? 'is-center' : '',
         showClose ? 'is-closable' : '',
+        size ? `el-message__${size}`: '',
         customClass
       ]"
       :style="positionStyle"
@@ -16,10 +17,12 @@
       <i :class="iconClass" v-if="iconClass"></i>
       <i :class="typeClass" v-else></i>
       <slot>
+        <p v-if="title" class="el-message__title">{{ title }}</p>
         <p v-if="!dangerouslyUseHTMLString" class="el-message__content">{{ message }}</p>
         <p v-else v-html="message" class="el-message__content"></p>
       </slot>
       <i v-if="showClose" class="el-message__closeBtn el-icon-close" @click="close"></i>
+      <div class="label-coutdown" v-if="!showClose">{{countDownSecond}}s</div>
     </div>
   </transition>
 </template>
@@ -36,9 +39,11 @@
     data() {
       return {
         visible: false,
+        title: '',
         message: '',
         duration: 3000,
         type: 'info',
+        size: '',
         iconClass: '',
         customClass: '',
         onClose: null,
@@ -47,7 +52,8 @@
         verticalOffset: 20,
         timer: null,
         dangerouslyUseHTMLString: false,
-        center: false
+        center: false,
+        countDownSecond: 0
       };
     },
 
@@ -98,6 +104,15 @@
           }, this.duration);
         }
       },
+      countDown() {
+        const d = () => {
+          this.countDownSecond--;
+          if (this.countDownSecond > 0) {
+            setTimeout(d, 1000);
+          }
+        };
+        d();
+      },
       keydown(e) {
         if (e.keyCode === 27) { // esc关闭消息
           if (!this.closed) {
@@ -107,7 +122,9 @@
       }
     },
     mounted() {
+      this.countDownSecond = Math.round(this.duration / 1000);
       this.startTimer();
+      this.countDown();
       document.addEventListener('keydown', this.keydown);
     },
     beforeDestroy() {

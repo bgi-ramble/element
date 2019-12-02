@@ -36,6 +36,31 @@
 ```
 :::
 
+### 带标题
+
+:::demo Message 在配置上与 Notification 非常类似，所以部分 options 在此不做详尽解释，文末有 options 列表，可以结合 Notification 的文档理解它们。Element 注册了一个`$message`方法用于调用，Message 可以接收一个字符串或一个 VNode 作为参数，它会被显示为正文内容。
+
+```html
+<template>
+  <el-button :plain="true" @click="open">打开消息提示</el-button>
+</template>
+
+<script>
+  export default {
+    methods: {
+
+      open() {
+        this.$message({
+          title: '我是标题',
+          message: '我是消息'
+        });
+      }
+    }
+  }
+</script>
+```
+:::
+
 ### 不同状态
 
 用来显示「成功、警告、消息、错误」类的操作反馈。
