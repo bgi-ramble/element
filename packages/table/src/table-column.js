@@ -47,6 +47,10 @@ export default {
       type: Boolean,
       default: true
     },
+    filterIconClass: {
+      type: String,
+      default: 'el-icon-arrow-down'
+    },
     index: [Number, Function],
     sortOrders: {
       type: Array,
@@ -281,7 +285,7 @@ export default {
     const basicProps = ['columnKey', 'label', 'className', 'labelClassName', 'type', 'renderHeader', 'formatter', 'fixed', 'resizable'];
     const sortProps = ['sortMethod', 'sortBy', 'sortOrders'];
     const selectProps = ['selectable', 'reserveSelection'];
-    const filterProps = ['filterMethod', 'filters', 'filterMultiple', 'filterOpened', 'filteredValue', 'filterPlacement'];
+    const filterProps = ['filterMethod', 'filters', 'filterMultiple', 'filterOpened', 'filteredValue', 'filterPlacement', 'filterIconClass'];
 
     let column = this.getPropsData(basicProps, sortProps, selectProps, filterProps);
     column = mergeOptions(defaults, column);
