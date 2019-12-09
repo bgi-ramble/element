@@ -23,7 +23,7 @@
       </div>
     </div>
     <div
-      class="el-table-filter"
+      class="el-table-filter "
       v-else
       v-clickoutside="handleOutsideClick"
       v-show="showPopper">

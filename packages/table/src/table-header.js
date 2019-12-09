@@ -318,6 +318,7 @@ export default {
         filterPanel.table = table;
         filterPanel.cell = cell;
         filterPanel.column = column;
+        filterPanel.visibleArrow = true;
         !this.$isServer && filterPanel.$mount(document.createElement('div'));
       }
 
@@ -329,8 +330,6 @@ export default {
     handleHeaderClick(event, column) {
       if (!column.filters && column.sortable) {
         this.handleSortClick(event, column);
-      } else if (column.filterable && !column.sortable) {
-        this.handleFilterClick(event, column);
       }
 
       this.$parent.$emit('header-click', column, event);
