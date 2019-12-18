@@ -24,7 +24,7 @@
     ref="node"
   >
     <div class="el-tree-node__content"
-      :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
+      :style="{ 'padding-left': (tree.baseIndent + (node.level - 1) * tree.indent) + 'px' }">
       <span
         @click.stop="handleExpandIconClick"
         :class="[

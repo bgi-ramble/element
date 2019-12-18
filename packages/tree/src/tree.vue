@@ -128,6 +128,10 @@
         type: Number,
         default: 18
       },
+      baseIndent: {
+        type: Number,
+        default: 0
+      },
       iconClass: String
     },
 
