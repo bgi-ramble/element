@@ -302,6 +302,10 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
+      },
+      blurOnSelect: {
+        type: Boolean,
+        default: true
       }
     },
 
@@ -697,7 +701,9 @@
           this.visible = false;
         }
         this.isSilentBlur = byClick;
-        this.setSoftFocus();
+        if (!this.blurOnSelect) {
+          this.setSoftFocus();
+        }
         if (this.visible) return;
         this.$nextTick(() => {
           this.scrollToOption(option);
