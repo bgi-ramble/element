@@ -990,7 +990,7 @@
 
 对表格进行筛选，可快速查找到自己想看的数据。
 
-:::demo 在列中设置`filters` `filter-method`属性即可开启该列的筛选，filters 是一个数组，`filter-method`是一个方法，它用于决定某些数据是否显示，会传入三个参数：`value`, `row` 和 `column`。
+:::demo 在列中设置`filters` `filter-method`属性即可开启该列的筛选，filters 是一个数组（也可以是个方法），`filter-method`是一个方法，它用于决定某些数据是否显示，会传入三个参数：`value`, `row` 和 `column`。
 ```html
 <template>
   <el-button @click="resetDateFilter">清除日期过滤器</el-button>
@@ -1023,7 +1023,7 @@
       prop="tag"
       label="标签"
       width="100"
-      :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
+      :filters="tagFilters"
       :filter-method="filterTag"
       filter-placement="bottom-end">
       <template slot-scope="scope">
@@ -1065,6 +1065,10 @@
     methods: {
       resetDateFilter() {
         this.$refs.filterTable.clearFilter('date');
+      },
+      tagFilters (column) {
+        console.log(column)
+        return [{ text: '家', value: '家' }, { text: '公司', value: '公司' }];
       },
       clearFilter() {
         this.$refs.filterTable.clearFilter();

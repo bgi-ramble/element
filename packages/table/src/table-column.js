@@ -41,7 +41,7 @@ export default {
     reserveSelection: Boolean,
     filterMethod: Function,
     filteredValue: Array,
-    filters: Array,
+    filters: [Array, Function],
     filterPlacement: String,
     filterMultiple: {
       type: Boolean,

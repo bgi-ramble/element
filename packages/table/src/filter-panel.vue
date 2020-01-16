@@ -127,7 +127,13 @@
 
     computed: {
       filters() {
-        return this.column && this.column.filters;
+        if (this.showPopper && this.column) {
+          if (typeof this.column.filters === 'function') {
+            return this.column.filters(this.column);
+          }
+          return this.column.filters;
+        }
+        return [];
       },
 
       filterValue: {
