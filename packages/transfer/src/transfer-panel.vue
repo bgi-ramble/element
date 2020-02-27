@@ -19,7 +19,7 @@
         @mouseenter.native="inputHover = true"
         @mouseleave.native="inputHover = false"
         v-if="filterable">
-        <i slot="prefix"
+        <i slot="suffix"
           :class="['el-input__icon', 'el-icon-' + inputIcon]"
           @click="clearQuery"
         ></i>
