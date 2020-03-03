@@ -7,6 +7,7 @@ let MessageConstructor = Vue.extend(Main);
 let instance;
 let instances = [];
 let seed = 1;
+let maxLimit = 1;
 
 const Message = function(options) {
   if (Vue.prototype.$isServer) return;
@@ -15,6 +16,10 @@ const Message = function(options) {
     options = {
       message: options
     };
+  }
+  while (instances.length >= Message.maxLimit) {
+    const ins = instances[0];
+    Message.close(ins.id);
   }
   let userOnClose = options.onClose;
   let id = 'message_' + seed++;
@@ -42,6 +47,8 @@ const Message = function(options) {
   instances.push(instance);
   return instance;
 };
+
+Message.maxLimit = maxLimit;
 
 ['success', 'warning', 'info', 'error'].forEach(type => {
   Message[type] = options => {
