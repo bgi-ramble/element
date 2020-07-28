@@ -1,5 +1,5 @@
 {
-  "name": "@imyon/element-ui",
+  "name": "@bgi-ramble/element-ui",
   "version": "2.13.7",
   "description": "A Component Library for Vue.js.",
   "main": "lib/element-ui.common.js",
@@ -46,7 +46,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:iMyon/element.git"
+    "url": "git@github.com:bgi-ramble/element.git"
   },
   "homepage": "http://element.eleme.io",
   "keywords": [
@@ -56,7 +56,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iMyon/element/issues"
+    "url": "https://github.com/bgi-ramble/element/issues"
   },
   "unpkg": "lib/index.js",
   "style": "lib/theme-chalk/index.css",
