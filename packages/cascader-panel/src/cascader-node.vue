@@ -76,11 +76,15 @@
 
       handleCheckChange() {
         const { panel, value, node } = this;
+        const { onNodeClick } = this.config;
+        onNodeClick && onNodeClick(value, node);
         panel.handleCheckChange(value);
         panel.handleExpand(node);
       },
 
       handleMultiCheckChange(checked) {
+        const { onNodeCheckChange } = this.config;
+        onNodeCheckChange && onNodeCheckChange(checked, this.node);
         this.node.doCheck(checked);
         this.panel.calculateMultiCheckedValue();
       },
