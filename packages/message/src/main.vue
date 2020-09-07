@@ -22,7 +22,7 @@
         <p v-else v-html="message" class="el-message__content"></p>
       </slot>
       <i v-if="showClose" class="el-message__closeBtn el-icon-close" @click="close"></i>
-      <div class="label-coutdown" v-if="!showClose">{{countDownSecond}}s</div>
+      <div class="label-coutdown" :style="{visibility: !showClose && isTimerActive ? 'visible' : 'hidden'}">{{countDownSecond}}s</div>
     </div>
   </transition>
 </template>
@@ -51,6 +51,8 @@
         closed: false,
         verticalOffset: 20,
         timer: null,
+        countdownTimer: null,
+        isTimerActive: false,
         dangerouslyUseHTMLString: false,
         center: false,
         countDownSecond: 0
@@ -92,22 +94,28 @@
       },
 
       clearTimer() {
+        this.isTimerActive = false;
         clearTimeout(this.timer);
+        clearTimeout(this.countdownTimer);
+        this.countDownSecond = Math.round(this.duration / 1000);
       },
 
       startTimer() {
+        this.isTimerActive = true;
         if (this.duration > 0) {
           this.timer = setTimeout(() => {
             if (!this.closed) {
               this.close();
             }
           }, this.duration);
+          this.countDown();
         }
       },
       countDown() {
+        this.countDownSecond = Math.round(this.duration / 1000);
         const d = () => {
           if (this.countDownSecond > 0) {
-            setTimeout(() => {
+            this.countdownTimer = setTimeout(() => {
               this.countDownSecond--;
               d();
             }, 1000);
@@ -124,9 +132,7 @@
       }
     },
     mounted() {
-      this.countDownSecond = Math.round(this.duration / 1000);
       this.startTimer();
-      this.countDown();
       document.addEventListener('keydown', this.keydown);
     },
     beforeDestroy() {
